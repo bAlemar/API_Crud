@@ -13,3 +13,37 @@ def calculate():
     http_response = calculator_view.handle(http_request)
 
     return jsonify(http_response.body), http_response.status_code
+
+
+from src.main.composer.search_compose import search_composer
+
+@api.route("/search",methods=["POST"])
+def search():
+    search_view = search_composer()
+
+    http_request = request_adapter(request)
+    http_response = search_view.handle(http_request)
+
+    return jsonify(http_response.body), http_response.status_code
+
+
+from src.main.composer.delete_compose import delete_composer
+
+@api.route("/delete",methods=["POST"])
+def delete():
+    delete_view = delete_composer()
+    http_request = request_adapter(request)
+    http_response = delete_view.handle(http_request)
+
+    return jsonify(http_response.body), http_response.status_code
+
+
+from src.main.composer.update_composer import update_composer
+
+@api.route("/update",methods=["POST"])
+def update():
+    update_view = update_composer()
+    http_request = request_adapter(request)
+    http_response = update_view.handle(http_request)
+
+    return jsonify(http_response.body), http_response.status_code
