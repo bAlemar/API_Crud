@@ -5,6 +5,7 @@ from src.main.adapter.request_adapter import request_adapter
 from src.main.composer.cadastro_composer import cadastro_composer
 
 
+
 @api.route("/cadastro", methods=["POST"])
 def calculate():
     calculator_view = cadastro_composer()
@@ -47,3 +48,9 @@ def update():
     http_response = update_view.handle(http_request)
 
     return jsonify(http_response.body), http_response.status_code
+
+
+# Perguntar...
+@api.errorhandler(404)
+def page_not_found(error):
+    return jsonify({"error": "Página não encontrada"}), 404
