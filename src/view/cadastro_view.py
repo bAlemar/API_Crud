@@ -16,5 +16,6 @@ class CadastroView(ViewInterface):
             response = self.__controller.run(elements)
 
             return HttpResponse(status_code=200, body={ "response": response })
+        # Aqui entrar nosso tratamento de error:
         except Exception as exception:
             return HttpResponse(status_code=500, body={ "error": str(exception) })
