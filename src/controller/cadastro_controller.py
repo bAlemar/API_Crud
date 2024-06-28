@@ -8,12 +8,7 @@ class CadastroController(CasdastroControleInterface):
         self.bancodados = bancodados
     
     def run(self,dados_json: Dict):
-        print('dados_json',dados_json)
-        
         dados = self.__format_dados(dados_json)
-        
-        print('dados',dados)
-        
         self.__cadastro_cliente(dados)
         return 'COMPLETADO'
     
