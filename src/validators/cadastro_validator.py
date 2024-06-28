@@ -1,6 +1,8 @@
 from cerberus import Validator
+from typing import Dict
+from src.errors.types.http_422 import Http422Error
 
-def casdastro_validator(request: any):
+def casdastro_validator(request: Dict):
 
     body_validator = Validator({
         "attributes": {
@@ -14,8 +16,7 @@ def casdastro_validator(request: any):
              }
         })
     
-    response = body_validator.validate(request.json)
-    
+    response = body_validator.validate(request)
     # Botar class de errors personalizados da Entidade
     if response is False:
-        print(body_validator.errors)
+        raise Http422Error(body_validator.errors)
